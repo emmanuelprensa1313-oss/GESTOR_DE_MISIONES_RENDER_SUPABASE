@@ -1,0 +1,53 @@
+{
+  "name": "gestor-de-misiones",
+  "version": "1.0.0",
+  "description": "Gestor de Misiones - aplicación Windows con Electron y servidor",
+  "main": "electron/main.js",
+  "author": "lapara18TG",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "server": "node server/server.js",
+    "build": "electron-builder --win nsis",
+    "build:portable": "electron-builder --win portable"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "electron": "^37.2.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.lapara18tg.gestordemisiones",
+    "productName": "Gestor de Misiones",
+    "files": [
+      "electron/**/*",
+      "client/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/TODAS LAS MISIONES",
+        "to": "TODAS LAS MISIONES"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "artifactName": "Gestor-de-Misiones-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  }
+}
